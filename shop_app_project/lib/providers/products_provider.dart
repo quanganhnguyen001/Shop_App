@@ -40,8 +40,17 @@ class Products extends ChangeNotifier{
     ),
   ];
 
+  var _showFavourites = false;
+
   List<Product> get items {
+    // if(_showFavourites){
+    //   return _items.where((prodItem) => prodItem.isFavourites).toList();// neu dung thi tra ve danh sach
+    // }
   return [..._items];
+  }
+
+  List<Product> get favouritesItem{
+    return _items.where((prodItem) => prodItem.isFavourites).toList();
   }
 
   Product findByID(String id){
@@ -52,4 +61,14 @@ class Products extends ChangeNotifier{
     // _items.add(value);
     notifyListeners();
   }
+
+  // void showFavouritesOnly(){
+  //   _showFavourites = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll(){
+  //   _showFavourites = false;
+  //   notifyListeners();
+  // }
 }
