@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app_project/module/detail/widget/cart_item.dart';
 import 'package:shop_app_project/providers/cart.dart' show Cart;
+import 'package:shop_app_project/providers/orders.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({ Key? key }) : super(key: key);
@@ -31,7 +32,10 @@ class CartPage extends StatelessWidget {
                     label: Text('\$${cart.totalAmount}',style: TextStyle(color: Colors.white,),)
                   ),
                   TextButton(
-                    onPressed: (){}, 
+                    onPressed: (){
+                      Provider.of<Orders>(context,listen: false).addOrder(cart.items.values.toList(), cart.totalAmount);
+                      cart.clearOrder();
+                    }, 
                     child: Text('ORDER NOW'),
                   ),
                 ],
@@ -48,6 +52,7 @@ class CartPage extends StatelessWidget {
                 title: cart.items.values.toList()[index].title,
                 price: cart.items.values.toList()[index].price,
                 quantity: cart.items.values.toList()[index].quanity,
+                productId: cart.items.keys.toList()[index],
               );
             },
 

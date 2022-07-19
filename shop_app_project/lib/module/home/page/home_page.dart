@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app_project/module/cart/page/cart_page.dart';
+import 'package:shop_app_project/module/home/widget/app_drawer.dart';
 import 'package:shop_app_project/module/home/widget/badge.dart';
 import 'package:shop_app_project/providers/cart.dart';
 import 'package:shop_app_project/providers/products_provider.dart';
@@ -59,6 +60,7 @@ class _HomePageState extends State<HomePage> {
         ],
         title: Text('My Shop'),
       ),
+      drawer: AppDrawer(),
       body: ProductGrid(showFav: _showOnlyFavourites,),
     );
   }
